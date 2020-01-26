@@ -55,6 +55,14 @@
 				"settings": {
 					"bundleName": "sap.ui.demo.basicTemplate.i18n.i18n"
 				}
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "/backend/api/v1/Transactions",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
 			}
 		},
 		"resources": {
@@ -76,6 +84,11 @@
 					"pattern": "",
 					"name": "home",
 					"target": ["home"]
+				},
+				{
+					"pattern": "Detail/{transactionId}",
+					"name": "detail",
+					"target": ["detail"]
 				}
 			],
 			"targets": {
@@ -84,6 +97,12 @@
 					"viewId": "home",
 					"viewLevel": 1,
 					"title": "{i18n>title}"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"viewId": "detail",
+					"viewLevel": 2,
+					"title": "{i18n>xtit.detailPage}"
 				}
 			}
 		}

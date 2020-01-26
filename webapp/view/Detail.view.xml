@@ -1,0 +1,21 @@
+<mvc:View
+	controllerName="sap.ui.demo.basicTemplate.controller.Detail"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="page"
+		title="{i18n>xtit.detailPage}">
+		<content>
+			<!-- <Text text="{name}" /> -->
+			<Panel> <Text text="{ path: 'name',
+				formatter: '.formatter.formatName'}" /> </Panel>
+			
+			<Panel><Text text="Price per order: {price}€" /></Panel>
+			<Panel><Text text="Ingredients: {ingredients}" /></Panel>
+			<Panel><Text text="Available amount to order: {amount}" /></Panel>
+
+			<Button text="Order" press="onOrder" />
+		</content>
+	</Page>
+</mvc:View>

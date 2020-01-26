@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Manti",
+    "price": 14,
+    "amount": 6,
+    "id": 1,
+    "ordered": 0,
+    "ingredients": "Dough, meat, joghurt, oil, pepper flakes" 
+  },
+  {
+    "name": "Salmon",
+    "price": 15,
+    "amount": 8,
+    "id": 2,
+    "ordered": 0,
+    "ingredients": "Salmon, olive oil, mustard, lemon, pepper flakes" 
+  },
+  {
+    "name": "Pasta",
+    "price": 10,
+    "amount": 10,
+    "id": 3,
+    "ordered": 0,
+    "ingredients": "Pasta, meat, tomato sausce, pepper flakes" 
+  }
+]
