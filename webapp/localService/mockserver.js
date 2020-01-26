@@ -39,6 +39,16 @@ sap.ui.define([
 						}
 					});
 
+					requests.push({
+						method: "POST",
+						path: new RegExp("(.*)/api/v1/Add2DB"),
+						response: function(oXhr) {
+							templateReader.oData[templateReader.oData["length"]] = JSON.parse(oXhr.requestBody);
+							oXhr.respondJSON(204);
+							return true;
+						}
+					});
+
 					var mockServer = new MockServer({
 						rootUri: "/backend",
 						requests: requests

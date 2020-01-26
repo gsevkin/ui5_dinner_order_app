@@ -2,8 +2,9 @@ sap.ui.define([
 	"./BaseController",
 	"../model/formatter",
 	"sap/m/MessageToast",
-	"sap/ui/model/json/JSONModel"
-], function(BaseController, formatter, MessageToast, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/Fragment"
+], function(BaseController, formatter, MessageToast, JSONModel, Fragment) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.demo.basicTemplate.controller.App", {
@@ -11,11 +12,16 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
-			var oViewModel = new JSONModel({
-				isEmailValid: false
+			var oAddItemModel = new JSONModel({
+				"name": "",
+				"price": 0,
+				"amount": 0,
+				"id": 0,
+				"ordered": 0,
+				"ingredients": "" 
 			});
 
-			this.setModel(oViewModel, "viewModel");
+			this.setModel(oAddItemModel, "addItemModel");
 		},
 
 		onSubmit: function () {
@@ -49,6 +55,59 @@ sap.ui.define([
 		onPress: function (event) {
 			var itemId = event.getSource().getBindingContext().sPath.replace("/", "");
 			this.getRouter().navTo("detail",  {transactionId : itemId});
+		},
+
+		_openDialog : function () {
+			var oView = this.getView();
+
+			// create dialog lazily
+			if (!this._addDialog) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "sap.ui.demo.basicTemplate.view.AddItemDialog",
+					controller: this
+				}).then(oDialog => {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
+					this._addDialog = oDialog;
+				});
+			} else {
+				this._addDialog.open();
+			}
+		},
+
+		onPressAddItem: function () {
+			this._openDialog();	
+		},
+
+		onPressItemCancel: function () {
+			if (this._addDialog) {
+				this._addDialog.close();
+			}
+		},
+
+		onPressPushNewItem:function (event) {
+			var data = JSON.parse(this.getModel().getJSON());
+			var newdata = JSON.parse(this.getModel("addItemModel").getJSON());
+			newdata.id = data.length;
+			$.ajax({
+				url: "/backend/api/v1/Add2DB",
+				method: "POST",
+				contentType: "application/json",
+				data: JSON.stringify(newdata),
+				success: () => {
+					MessageToast.show("successfully added to DB", {
+						closeOnBrowserNavigation: false 
+					});
+					this._addDialog.close();
+					this.onRefresh();
+				},
+				error: function (e) {
+					MessageToast.show("Error happened")
+				}
+			});	
 		}
 	});
 });

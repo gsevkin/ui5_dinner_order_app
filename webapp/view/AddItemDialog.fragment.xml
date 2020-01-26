@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:l="sap.ui.layout"
+   xmlns:f="sap.ui.layout.form" >
+   <Dialog
+      title="Transaction">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    title="Add To Menu"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" >
+                    <f:content>
+                        <Label text="Name" />
+                        <Input value="{addItemModel>/name}" />
+                        <Label text="Price" />
+                        <Input value="{addItemModel>/price}"/>
+                        <Label text="Amount"/>
+                        <Input value="{addItemModel>/amount}"/>
+                        <Label text="Ingredients" />
+                        <Input value="{addItemModel>/ingredients}"/>
+                    </f:content>
+                </f:SimpleForm>
+    	    </VBox>
+        </content>
+        <buttons>
+            <Button text="Cancel" press="onPressItemCancel"/>
+            <Button text="Add" press="onPressPushNewItem"/>
+        </buttons>
+
+   </Dialog>
+</core:FragmentDefinition>

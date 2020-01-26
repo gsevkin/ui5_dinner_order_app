@@ -44,6 +44,7 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+			<Button text="Add Item" press="onPressAddItem" />
 		</content>
 	</Page>
 </mvc:View>

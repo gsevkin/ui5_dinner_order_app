@@ -31,7 +31,7 @@ sap.ui.define([
 			});
 		},
 
-		onOrder: function () {
+		onPressBtnOrder: function () {
 			this._openDialog();
 		},
 
