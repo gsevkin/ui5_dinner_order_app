@@ -1,0 +1,20 @@
+<mvc:View
+	controllerName="sap.ui.demo.basicTemplate.controller.Home"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="page"
+		title="{i18n>xtit.homePage}">
+		<content>
+			<Label text="Email Address: "/>
+			<Input id="inputEmail" value="" 
+				change="onInputChanged"
+				valueState="{= ${viewModel>/isEmailValid} ? 'None' : 'Error' }"
+				valueStateText="{= ${viewModel>/isEmailValid} ? '' : 'Invalid Email' }" />
+			
+			<Button id="btnSubmit" text="Submit" press="onSubmit" enabled="{viewModel>/isEmailValid}"/>
+			<!-- <Button id="btnSubmi" text="Submit" press="onSubmit" enabled="false"/> -->
+		</content>
+	</Page>
+</mvc:View>

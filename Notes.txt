@@ -1,0 +1,5 @@
+Get Email address
+
+- user enters email address, then we check for validity
+    - if valid, enable button 
+    - if not valid, buttons stays disabled, state of the input component is errorenous
