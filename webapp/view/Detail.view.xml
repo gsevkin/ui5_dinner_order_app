@@ -16,6 +16,7 @@
 			<Panel><Text text="Available amount to order: {amount}" /></Panel>
 			<Panel><Text text="Ordered amount: {ordered}" /></Panel>
 			<Button text="Order" press="onPressBtnOrder" />
+			<Button text="Back" press="onPressBtnBack" />
 		</content>
 	</Page>
 </mvc:View>

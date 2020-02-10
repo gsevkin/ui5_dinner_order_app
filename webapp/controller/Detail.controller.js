@@ -31,6 +31,11 @@ sap.ui.define([
 			});
 		},
 
+		onPressBtnBack: function (event) {
+			var itemId = event.getSource().getBindingContext().sPath.replace("/", "");
+			this.getRouter().navTo("home");
+		},
+
 		onPressBtnOrder: function () {
 			this._openDialog();
 		},
@@ -61,6 +66,15 @@ sap.ui.define([
 			data = JSON.parse(data);
 			var newOrderAmount = parseInt(this.getView().byId("newOrderVal").getValue());
 			var newOrderID = parseInt(this.getView().byId("idOfItem").getValue()) - 1;			
+			if (newOrderAmount > data[newOrderID].amount - data[newOrderID].ordered)
+			{
+				MessageToast.show("Cannot order more than remaining amount!", {
+					closeOnBrowserNavigation: false 
+				});
+				this._trDialog.close();
+				return;
+			}
+
 			data[newOrderID].ordered += newOrderAmount;
 
 			$.ajax({
