@@ -56,18 +56,24 @@ sap.ui.define([
 			}
 		},
 
-		onEditOrder: function () {
+		onEditOrder: function (event) {
 			var data = this.getModel().getJSON();
+			data = JSON.parse(data);
+			var newOrderAmount = parseInt(this.getView().byId("newOrderVal").getValue());
+			var newOrderID = parseInt(this.getView().byId("idOfItem").getValue()) - 1;			
+			data[newOrderID].ordered += newOrderAmount;
+
 			$.ajax({
 				url: "/backend/api/v1/Transactions",
 				method: "POST",
 				contentType: "application/json",
-				data: data,
+				data: JSON.stringify(data),
 				success: () => {
 					MessageToast.show("successfully ordered", {
 						closeOnBrowserNavigation: false 
 					});
 					this._trDialog.close();
+					this.getModel().loadData("/backend/api/v1/Transactions");
 				},
 				error: function (e) {
 					MessageToast.show("Error happened")

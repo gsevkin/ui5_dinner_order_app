@@ -91,7 +91,7 @@ sap.ui.define([
 		onPressPushNewItem:function (event) {
 			var data = JSON.parse(this.getModel().getJSON());
 			var newdata = JSON.parse(this.getModel("addItemModel").getJSON());
-			newdata.id = data.length;
+			newdata.id = data.length + 1;
 			$.ajax({
 				url: "/backend/api/v1/Add2DB",
 				method: "POST",

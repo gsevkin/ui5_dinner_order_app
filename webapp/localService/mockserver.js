@@ -34,6 +34,7 @@ sap.ui.define([
 						method: "POST",
 						path: new RegExp("(.*)/api/v1/Transactions"),
 						response: function(oXhr) {
+							templateReader.oData = JSON.parse(oXhr.requestBody);
 							oXhr.respondJSON(204);
 							return true;
 						}
