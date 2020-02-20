@@ -1,1 +1,1 @@
-# budget-monitor
+# sample UI5 application to order dinner 
